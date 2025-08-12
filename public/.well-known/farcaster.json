@@ -10,14 +10,14 @@
     "subtitle": "Built with Zara",
     "description": "Farcaster Stats Canvas is a Base Mini App built with Zara.",
     "iconUrl": "https://0co.to/images/zara-2.png",
-    "homeUrl": "https://666e3944-9390-4de2-912b-431b584c8c1d.vistara.dev",
-    "splashImageUrl": "https://dummyimage.com/200x200/0a0b0d/ffffff.png&text=Splash",
+    "homeUrl": "https://666e394493904de2912b431b584c8c1d-3c3q-pnteqbrtk-vistara.vercel.app",
+    "splashImageUrl": "https://666e394493904de2912b431b584c8c1d-3c3q-pnteqbrtk-vistara.vercel.app/splash.png",
     "splashBackgroundColor": "#000000",
-    "heroImageUrl": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=Hero",
+    "heroImageUrl": "https://666e394493904de2912b431b584c8c1d-3c3q-pnteqbrtk-vistara.vercel.app/image.png",
     "tagline": "Farcaster Stats Canvas",
     "screenshotUrls": [
-      "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=Shot1",
-      "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=Shot2"
+      "https://666e394493904de2912b431b584c8c1d-3c3q-pnteqbrtk-vistara.vercel.app/screenshot.png",
+      "https://666e394493904de2912b431b584c8c1d-3c3q-pnteqbrtk-vistara.vercel.app/screenshot.png"
     ],
     "primaryCategory": "social",
     "tags": [
@@ -25,6 +25,6 @@
       "miniapp",
       "onchainkit"
     ],
-    "webhookUrl": "https://666e3944-9390-4de2-912b-431b584c8c1d.vistara.dev/api/webhook"
+    "webhookUrl": "https://666e394493904de2912b431b584c8c1d-3c3q-pnteqbrtk-vistara.vercel.app/api/webhook"
   }
 }
