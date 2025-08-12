@@ -15,6 +15,8 @@ import { ConnectWallet, Wallet, WalletDropdown, WalletDropdownDisconnect } from 
 import StatsCard from './components/StatsCard'
 import AddressInput from './components/AddressInput'
 import ConfiguratorPanel from './components/ConfiguratorPanel'
+import LoadingCard from './components/LoadingCard'
+import EmptyState from './components/EmptyState'
 
 interface UserStats {
   address: string
@@ -131,25 +133,26 @@ export default function FarcasterStatsCanvas() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-bg via-surface to-bg">
       <div className="container mx-auto px-4 py-6 max-w-[500px]">
-        <header className="flex justify-between items-center mb-6">
+        <header className="flex justify-between items-center mb-8">
           {context && !context.client.added && (
             <button
               onClick={handleAddFrame}
-              className="bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-primary/90 transition-colors duration-fast"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
             >
-              SAVE FRAME
+              ⭐ SAVE FRAME
             </button>
           )}
-          <div className="flex space-x-3">
+          <div className="flex space-x-4">
             <button
               onClick={() => openUrl('https://base.org')}
-              className="text-primary text-sm font-semibold hover:text-primary/80 transition-colors duration-fast"
+              className="bg-blue-50 hover:bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-semibold border border-blue-200 hover:border-blue-300 transition-all duration-200 flex items-center space-x-2"
             >
-              BASE
+              <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+              <span>BASE</span>
             </button>
             <button
               onClick={close}
-              className="text-gray-600 text-sm font-semibold hover:text-gray-800 transition-colors duration-fast"
+              className="bg-gray-50 hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-semibold border border-gray-200 hover:border-gray-300 transition-all duration-200"
             >
               CLOSE
             </button>
@@ -189,29 +192,46 @@ export default function FarcasterStatsCanvas() {
             />
 
             {error && (
-              <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-sm text-red-600">{error}</p>
+              <div className="mt-4 p-4 bg-gradient-to-r from-red-50 to-orange-50 border-2 border-red-200 rounded-xl animate-slide-up">
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0">
+                    <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                      <span className="text-red-600 text-sm font-bold">!</span>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-red-800">Oops! Something went wrong</p>
+                    <p className="text-sm text-red-600 mt-1">{error}</p>
+                  </div>
+                </div>
               </div>
             )}
           </div>
 
-          {userStats && (
-            <div className="space-y-4">
+          {isLoading && <LoadingCard />}
+
+          {!isLoading && !userStats && <EmptyState />}
+
+          {!isLoading && userStats && (
+            <div className="space-y-6 animate-fade-in">
               <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-gray-900">Your Stats Card</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Your Stats Card</h2>
                 <button
                   onClick={() => setShowConfigurator(!showConfigurator)}
-                  className="text-sm text-primary hover:text-primary/80 font-medium transition-colors duration-fast"
+                  className="bg-gradient-to-r from-blue-50 to-purple-50 hover:from-blue-100 hover:to-purple-100 text-blue-700 px-4 py-2 rounded-xl text-sm font-semibold border border-blue-200 hover:border-blue-300 transition-all duration-200 flex items-center space-x-2"
                 >
-                  {showConfigurator ? 'Hide' : 'Customize'}
+                  <span className="text-lg">🎨</span>
+                  <span>{showConfigurator ? 'Hide Customizer' : 'Customize Card'}</span>
                 </button>
               </div>
 
               {showConfigurator && (
-                <ConfiguratorPanel
-                  config={cardConfig}
-                  onChange={setCardConfig}
-                />
+                <div className="animate-slide-up">
+                  <ConfiguratorPanel
+                    config={cardConfig}
+                    onChange={setCardConfig}
+                  />
+                </div>
               )}
 
               <StatsCard
@@ -220,21 +240,25 @@ export default function FarcasterStatsCanvas() {
               />
             </div>
           )}
-
-          {isLoading && (
-            <div className="text-center py-8">
-              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-              <p className="mt-2 text-sm text-gray-600">Fetching your Base stats...</p>
-            </div>
-          )}
         </main>
 
-        <footer className="mt-8 text-center">
+        <footer className="mt-12 text-center space-y-4">
+          <div className="flex items-center justify-center space-x-6 text-sm text-gray-500">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span>Powered by Base</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+              <span>Built with MiniKit</span>
+            </div>
+          </div>
           <button
             onClick={() => openUrl('https://docs.base.org/base-camp/docs/minikit/overview')}
-            className="text-xs text-gray-500 hover:text-gray-700 transition-colors duration-fast"
+            className="inline-flex items-center space-x-2 bg-gray-50 hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-xs font-medium border border-gray-200 hover:border-gray-300 transition-all duration-200"
           >
-            BUILT WITH MINIKIT
+            <span>📚</span>
+            <span>Learn More About MiniKit</span>
           </button>
         </footer>
       </div>

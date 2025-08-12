@@ -1,4 +1,3 @@
-
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
@@ -27,9 +26,12 @@ module.exports = {
         glow: '0 0 20px hsla(210, 90%, 50%, 0.2)',
       },
       animation: {
-        'fade-in': 'fadeIn 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)',
-        'slide-up': 'slideUp 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)',
-        'scale-up': 'scaleUp 0.15s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'fade-in': 'fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'slide-up': 'slideUp 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'scale-up': 'scaleUp 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'slide-in-left': 'slideInLeft 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'slide-in-right': 'slideInRight 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'bounce': 'bounce 2s infinite',
       },
     },
   },

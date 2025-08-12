@@ -2,10 +2,12 @@
 
 export default function ConfiguratorPanel({ config, onChange }) {
   const colorThemes = [
-    { id: 'default', name: 'Default', colors: 'from-blue-600 to-purple-600' },
-    { id: 'ocean', name: 'Ocean', colors: 'from-blue-500 to-cyan-400' },
-    { id: 'sunset', name: 'Sunset', colors: 'from-orange-500 to-pink-500' },
-    { id: 'forest', name: 'Forest', colors: 'from-green-600 to-emerald-500' }
+    { id: 'default', name: 'Default', colors: 'from-blue-700 via-indigo-600 to-purple-600' },
+    { id: 'ocean', name: 'Ocean', colors: 'from-blue-600 via-blue-500 to-cyan-400' },
+    { id: 'sunset', name: 'Sunset', colors: 'from-orange-600 via-pink-500 to-rose-400' },
+    { id: 'forest', name: 'Forest', colors: 'from-emerald-700 via-green-600 to-teal-500' },
+    { id: 'cosmic', name: 'Cosmic', colors: 'from-purple-700 via-violet-600 to-indigo-500' },
+    { id: 'fire', name: 'Fire', colors: 'from-red-600 via-orange-500 to-yellow-400' }
   ]
 
   const updateConfig = (key, value) => {
@@ -21,7 +23,7 @@ export default function ConfiguratorPanel({ config, onChange }) {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Color Theme
           </label>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-3 gap-2">
             {colorThemes.map((theme) => (
               <button
                 key={theme.id}
